@@ -1,0 +1,3 @@
+interface:
+  display_name: "Generate Code Repos Raw Docs"
+  short_description: "Batch raw doc workflow across external repos"

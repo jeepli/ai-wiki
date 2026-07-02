@@ -1,0 +1,3 @@
+interface:
+  display_name: "Index Code Repos"
+  short_description: "Build Serena and CodeGraph indexes for external repos"

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Generate Repo Raw Docs"
+  short_description: "Create versioned raw docs from one external repo"

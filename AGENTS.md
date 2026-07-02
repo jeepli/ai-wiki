@@ -12,6 +12,7 @@ The human curates sources, asks questions, and guides interpretation. Agents mai
 
 ```
 raw/                  -- source documents; treat existing files as immutable during ingest
+raw/code-repos/       -- generated raw source docs derived from external repo code snapshots, versioned by commit
 wiki/                 -- markdown pages maintained by Codex/Claude
 wiki/index.md         -- table of contents for the entire wiki
 wiki/log.md           -- append-only record of wiki operations
@@ -32,6 +33,9 @@ Create another scoped `wiki/` subdirectory only when the content clearly does no
 - Use `ingest-wiki-docs` when ingesting new or updated raw documents into `wiki/`.
 - Use `lint-wiki-docs` for wiki lint or audit requests.
 - Use `sync-code-repos` when cloning, refreshing, or overwriting local snapshots under `external-repos/` from `code-repos.yml`.
+- Use `index-code-repos` when building or refreshing Serena memories and CodeGraph indexes for local snapshots under `external-repos/`.
+- Use `generate-repo-raw-docs` when generating or refreshing versioned raw source documents for one `external-repos/` repository.
+- Use `generate-code-repos-raw-docs` when batch status-checking, preparing, or publishing code-derived raw documents across `code-repos.yml`.
 
 ### Ingest workflow
 
@@ -57,8 +61,11 @@ Create another scoped `wiki/` subdirectory only when the content clearly does no
 - `external-repos/` may contain local clones of inference engines and dependency repositories such as FlashAttention, FlashInfer, vLLM, and SGLang.
 - Track allowed explorable repositories in `code-repos.yml`.
 - Update local snapshots with `sync-code-repos`; treat the synced checkout as disposable and replaceable.
+- Build or refresh code exploration indexes with `index-code-repos` after code snapshots change.
 - Treat `external-repos/` as explorable code, not ingestable raw source.
 - Do not bulk-ingest source code into `wiki/`.
+- Store code-derived raw source documents under `raw/code-repos/<repo>/snapshots/<commit-short>/`; use `raw/code-repos/<repo>/latest.yml` as the current version pointer.
+- Batch raw-doc workflows must wrap `generate-repo-raw-docs` per repo rather than duplicating single-repo generation rules.
 - Explore code only when implementation evidence is needed for a user question or an explicitly requested code-derived wiki update.
 - Prefer Serena and CodeGraph for symbol lookup, focused source reading, callers/callees, flow tracing, and impact analysis.
 - Use `rg` for literal strings, filenames, config keys, logs, comments, or when semantic tools are unavailable.
