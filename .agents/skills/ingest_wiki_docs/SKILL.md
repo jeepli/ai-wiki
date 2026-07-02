@@ -33,6 +33,24 @@ Core rule: read sources, summarize learning value and proposed page changes to t
 
 Create another scoped directory only when the source set clearly does not fit these categories.
 
+## Directory Decision Rules
+
+Choose the directory by the page subject:
+
+- `wiki/papers/`: source-bound notes. The page answers "what does this paper, post, or course note say?"
+- `wiki/concepts/`: reusable ideas, definitions, mechanisms, or distinctions likely to be linked from many pages.
+- `wiki/models/`: model architectures, model families, training recipes, and capability boundaries. The page answers "what is this model or architecture?"
+- `wiki/systems/`: implementation, kernel, runtime, training, inference, serving, data, or evaluation systems. The page answers "how is this model run, scaled, optimized, or served?"
+- `wiki/math/`: formulas, derivations, probability/statistics, optimization math, and theoretical results.
+
+If a source introduces a reusable thing:
+
+1. Always create or update the `wiki/papers/...` source summary when the source is substantial.
+2. Create a concept, model, system, or math page only when the thing is central, reusable, or likely to receive future sources.
+3. Keep paper-specific experiments, author claims, tables, ablations, and limitations in `wiki/papers/...`.
+4. Put stable cross-source explanations, common pitfalls, and later-source synthesis in the concept, model, system, or math page.
+5. If two pages share a basename, their directory must make the difference explicit, such as `[[papers/flashattention]]` for the paper and `[[systems/flashattention]]` for the system method.
+
 ## Source Selection
 
 When the user asks to ingest new files:
