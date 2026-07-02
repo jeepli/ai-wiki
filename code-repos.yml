@@ -1,0 +1,52 @@
+repos:
+  - name: flashattention
+    path: external-repos/flashattention
+    upstream: https://github.com/Dao-AILab/flash-attention
+    domain: attention-kernel
+    role: IO-aware exact attention kernels and CUDA/Triton implementations
+    explore: true
+    ingest_policy: no-bulk-ingest
+    index:
+      serena: optional
+      codegraph: optional
+    notes:
+      - Use for implementation questions about FlashAttention kernels, APIs, and integration boundaries.
+
+  - name: flashinfer
+    path: external-repos/flashinfer
+    upstream: https://github.com/flashinfer-ai/flashinfer
+    domain: inference-kernel
+    role: LLM serving kernels, attention kernels, and paged KV cache primitives
+    explore: true
+    ingest_policy: no-bulk-ingest
+    index:
+      serena: optional
+      codegraph: optional
+    notes:
+      - Use for implementation questions about inference kernels and serving primitives.
+
+  - name: vllm
+    path: external-repos/vllm
+    upstream: https://github.com/vllm-project/vllm
+    domain: inference-engine
+    role: LLM serving engine, scheduler, paged attention, KV cache, and batching
+    explore: true
+    ingest_policy: no-bulk-ingest
+    index:
+      serena: optional
+      codegraph: optional
+    notes:
+      - Use for implementation questions about serving architecture, scheduling, paged attention, and KV cache management.
+
+  - name: sglang
+    path: external-repos/sglang
+    upstream: https://github.com/sgl-project/sglang
+    domain: inference-engine
+    role: LLM serving engine, structured generation runtime, scheduler, and inference APIs
+    explore: true
+    ingest_policy: no-bulk-ingest
+    index:
+      serena: optional
+      codegraph: optional
+    notes:
+      - Use for implementation questions about runtime architecture, structured generation, scheduling, and serving APIs.

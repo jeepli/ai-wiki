@@ -60,6 +60,18 @@ When the user asks to ingest new files:
 3. Group sources by topic or learning unit when multiple files cover the same idea.
 4. For PDFs, extract enough text to judge structure, citation quality, and OCR/page extraction reliability.
 
+## Code Repository Handling
+
+`external-repos/` contains explorable code repositories, not ingestable raw sources.
+
+- Do not bulk-ingest source code from `external-repos/` into `wiki/`.
+- Use `code-repos.yml` to identify allowed local code repositories and their roles.
+- Explore code only when the user asks an implementation question or explicitly asks to turn a focused code finding into wiki knowledge.
+- Prefer Serena and CodeGraph for symbol lookup, focused source reading, callers/callees, flow tracing, and impact analysis.
+- Use `rg` for literal strings, filenames, config keys, logs, comments, or when semantic tools are unavailable.
+- When writing code-derived facts into `wiki/`, cite repository name, path, symbol or file, and commit/version when available.
+- Keep code-derived wiki content focused on stable architecture, APIs, mechanisms, and tradeoffs; do not copy large code blocks.
+
 ## Required Pre-Write Checkpoint
 
 Before editing `wiki/`, report the learning takeaways and wait for confirmation.
@@ -148,6 +160,7 @@ For concept pages, use concept-oriented headings when useful:
 ## Do Not Do
 
 - Do not rewrite raw sources or treat `raw/` as scratch space.
+- Do not treat `external-repos/` as raw source or bulk-ingest code.
 - Do not create duplicate pages with slightly different names.
 - Do not create concept pages for every heading in a paper.
 - Do not copy long passages; summarize and cite.

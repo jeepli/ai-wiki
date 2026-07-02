@@ -32,6 +32,8 @@ Default behavior is report-only: do not edit `wiki/`, `raw/`, `wiki/index.md`, o
 - `wiki/models/`: model families, architectures, training recipes, and capabilities.
 - `wiki/systems/`: inference, training, data, evaluation, kernel, and infrastructure systems.
 - `wiki/math/`: mathematical foundations and derivations.
+- `code-repos.yml`: tracked manifest for explorable local code repositories.
+- `external-repos/`: ignored local code repository clones used for focused code exploration, not wiki ingest.
 
 Other scoped directories are acceptable only when the content clearly does not fit the default layout.
 
@@ -49,6 +51,8 @@ Audit these areas when the user asks to lint or audit the wiki:
 - **Citation quality**: citations identify the source clearly enough; ambiguous repeated basenames should use source paths.
 - **Source support**: cited sources actually support the wiki claim; unknown or tentative source statements must not become definitive wiki claims.
 - **Raw coverage**: important documents under `raw/` are reflected in wiki pages or called out as uningested.
+- **Code-derived support**: code-derived facts cite repository name, path, symbol or file, and commit/version when available.
+- **Code repository manifest**: `code-repos.yml` entries use ignored `external-repos/...` paths and do not imply bulk wiki coverage.
 - **Concept gaps**: recurring or central AI concepts lack reusable pages under `wiki/concepts/`, `wiki/systems/`, `wiki/models/`, or `wiki/math/`.
 - **Contradictions and outdated claims**: pages conflict with each other, newer sources, or newer raw snapshots.
 - **Prior-report regression**: recent findings remain open until current files and sources prove they were fixed, false positives, or out of scope.
@@ -56,8 +60,11 @@ Audit these areas when the user asks to lint or audit the wiki:
 ## Source Handling
 
 - Include `raw/` in source coverage checks.
+- Do not treat `external-repos/` as raw coverage input.
+- Do not report an external code repository as missing from `wiki/` merely because it appears in `code-repos.yml`.
 - Ignore OS artifacts such as `.DS_Store`.
 - For PDFs, verify whether cited claims can be traced to extracted text, page numbers, or a clearly named PDF source.
+- For code-derived claims, verify the cited repository path and symbol/file when the relevant repository is locally available.
 - Prefer comparing source families by version, date, or snapshot to avoid reporting old versions as missing when newer ones supersede them.
 - Do not rely only on grep for semantic checks; open the relevant wiki pages and cited sources.
 
@@ -66,6 +73,7 @@ Audit these areas when the user asks to lint or audit the wiki:
 Use fast local commands where possible:
 
 - `rg --files wiki reports raw`
+- `test -f code-repos.yml && sed -n '1,220p' code-repos.yml`
 - `ls -1 reports/*.md | sort | tail`
 - `rg -n '\[\[[^]]+\]\]' wiki`
 - `find wiki -maxdepth 1 -type f -name '*.md' ! -name index.md ! -name log.md`
@@ -141,12 +149,14 @@ When fixing:
 | `reports/` does not exist | Create it before writing the audit report. |
 | `wiki/` does not exist or has no content pages | Write a partial audit report explaining missing wiki coverage. |
 | `raw/` has sources but wiki has no matching pages | Report raw coverage findings instead of silently passing. |
+| `code-repos.yml` references a missing local path | Note it as optional code exploration coverage unless the audit scope requires code availability. |
 | Source extraction is unreliable | Mark related source-support checks as partial and note the risk. |
 | A semantic claim cannot be verified quickly | Mark it as needs verification; do not assert it is false. |
 
 ## Do Not Do
 
 - Do not modify `raw/` or wiki pages during audit mode.
+- Do not lint `external-repos/` as if it were wiki content or raw ingest input.
 - Do not report "No findings" after only running link checks.
 - Do not close prior findings without current evidence.
 - Do not treat missing concept pages as findings unless the concept is recurring, central, or link-worthy.

@@ -21,6 +21,8 @@ wiki/models/          -- model families, architectures, training recipes, and ca
 wiki/systems/         -- inference, training, data, evaluation, kernel, and infrastructure systems
 wiki/math/            -- mathematical foundations and derivations
 reports/              -- timestamped wiki lint/audit reports
+code-repos.yml        -- tracked manifest for explorable local code repositories
+external-repos/       -- local code repository clones; ignored by git and not ingested directly
 ```
 
 Create another scoped `wiki/` subdirectory only when the content clearly does not fit the default layout.
@@ -29,6 +31,7 @@ Create another scoped `wiki/` subdirectory only when the content clearly does no
 
 - Use `ingest-wiki-docs` when ingesting new or updated raw documents into `wiki/`.
 - Use `lint-wiki-docs` for wiki lint or audit requests.
+- Use `sync-code-repos` when cloning, refreshing, or overwriting local snapshots under `external-repos/` from `code-repos.yml`.
 
 ### Ingest workflow
 
@@ -49,9 +52,23 @@ Create another scoped `wiki/` subdirectory only when the content clearly does no
 - Do not write "No findings" unless all in-scope categories and prior-report regression checks were completed.
 - If any category is skipped, call the report a partial audit and list skipped categories in coverage notes.
 
+### Code repository sources
+
+- `external-repos/` may contain local clones of inference engines and dependency repositories such as FlashAttention, FlashInfer, vLLM, and SGLang.
+- Track allowed explorable repositories in `code-repos.yml`.
+- Update local snapshots with `sync-code-repos`; treat the synced checkout as disposable and replaceable.
+- Treat `external-repos/` as explorable code, not ingestable raw source.
+- Do not bulk-ingest source code into `wiki/`.
+- Explore code only when implementation evidence is needed for a user question or an explicitly requested code-derived wiki update.
+- Prefer Serena and CodeGraph for symbol lookup, focused source reading, callers/callees, flow tracing, and impact analysis.
+- Use `rg` for literal strings, filenames, config keys, logs, comments, or when semantic tools are unavailable.
+- When writing code-derived facts into `wiki/`, cite repository name, path, symbol or file, and commit/version when available.
+- Keep code-derived wiki content focused on stable architecture, APIs, mechanisms, and tradeoffs; do not copy large code blocks.
+
 ## Rules
 
 - Do not casually modify `raw/`. Create or update raw files only for explicit source sync or user-requested raw-source tasks; preserve provenance and version/history metadata where applicable.
+- Do not commit `external-repos/` contents.
 - Keep root-level `wiki/*.md` limited to `wiki/index.md` and `wiki/log.md`; create content pages under scoped subdirectories.
 - Keep directory names and page names lowercase kebab-case, for example `machine-learning.md`.
 - Use path-style wiki links, for example `[[papers/flashattention]]` or `[[concepts/attention]]`.
