@@ -2,7 +2,7 @@
 
 **Summary**: Table of contents for the personal AI learning wiki.
 
-**Last updated**: 2026-07-02
+**Last updated**: 2026-07-03
 
 ---
 
@@ -14,6 +14,7 @@
 ## Concepts
 
 - [[concepts/attention]] - Query-key-value attention, self-attention, scaled dot-product attention, and multi-head attention.
+- [[concepts/kv-cache]] - KV cache, paged KV cache, prefix cache, and serving-time cache management.
 
 ## Models
 
@@ -21,7 +22,10 @@
 
 ## Systems
 
-- [[systems/flashattention]] - FlashAttention as a system implementation pattern for memory-efficient exact attention.
+- [[systems/flashattention]] - FlashAttention as a memory-efficient exact attention system and kernel package.
+- [[systems/flashinfer]] - FlashInfer as a serving-kernel library for paged KV-cache attention and related inference primitives.
+- [[systems/vllm]] - vLLM as an inference and serving engine with scheduling, KV cache management, and attention backend selection.
+- [[systems/sglang]] - SGLang as a structured generation framework and serving runtime with scheduler, radix cache, and kernel package.
 
 ## Math
 
