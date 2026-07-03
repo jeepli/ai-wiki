@@ -25,6 +25,7 @@ Default behavior is report-only: do not edit `wiki/`, `raw/`, `wiki/index.md`, o
 
 ## Expected Wiki Shape
 
+- `raw/paper/`: paper PDFs and other paper-like source documents.
 - `wiki/index.md`: table of contents for all wiki pages.
 - `wiki/log.md`: append-only ingest and maintenance log.
 - `wiki/papers/`: papers, long-form articles, course notes, and source summaries.
@@ -50,7 +51,7 @@ Audit these areas when the user asks to lint or audit the wiki:
 - **Citation coverage**: factual paragraphs, key numbers, results, comparisons, definitions, diagrams, and limitations cite a source.
 - **Citation quality**: citations identify the source clearly enough; ambiguous repeated basenames should use source paths.
 - **Source support**: cited sources actually support the wiki claim; unknown or tentative source statements must not become definitive wiki claims.
-- **Raw coverage**: important documents under `raw/` are reflected in wiki pages or called out as uningested.
+- **Raw coverage**: important documents under `raw/`, including paper PDFs under `raw/paper/`, are reflected in wiki pages or called out as uningested.
 - **Code-derived support**: code-derived facts cite repository name, path, symbol or file, and commit/version when available.
 - **Code repository manifest**: `code-repos.yml` entries use ignored `external-repos/...` paths and do not imply bulk wiki coverage.
 - **Concept gaps**: recurring or central AI concepts lack reusable pages under `wiki/concepts/`, `wiki/systems/`, `wiki/models/`, or `wiki/math/`.
@@ -60,6 +61,7 @@ Audit these areas when the user asks to lint or audit the wiki:
 ## Source Handling
 
 - Include `raw/` in source coverage checks.
+- Treat `raw/paper/` as the default location for paper PDF sources.
 - Do not treat `external-repos/` as raw coverage input.
 - Do not report an external code repository as missing from `wiki/` merely because it appears in `code-repos.yml`.
 - Ignore OS artifacts such as `.DS_Store`.

@@ -15,7 +15,7 @@ Expected behavior:
 
 - Search `wiki/` first.
 - If a relevant maintained page answers the question with citations, answer from that page.
-- Do not inspect `raw/`, `raw/code-repos/`, or `external-repos/`.
+- Do not inspect `raw/`, `raw/paper/`, `raw/code-repos/`, or `external-repos/`.
 - Report search depth as `wiki`.
 
 Failure this catches:

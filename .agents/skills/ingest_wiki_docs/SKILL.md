@@ -1,6 +1,6 @@
 ---
 name: ingest-wiki-docs
-description: Use when ingesting new or updated raw documents into this personal AI learning wiki, including papers, posts, course notes, model/system docs, and PDFs under raw/. Guides source triage, pre-write confirmation, scoped wiki pages, citations, index updates, and log updates.
+description: Use when ingesting new or updated raw documents into this personal AI learning wiki, including papers, posts, course notes, model/system docs, and PDFs under raw/paper/ or raw/. Guides source triage, pre-write confirmation, scoped wiki pages, citations, index updates, and log updates.
 ---
 
 # Ingest Wiki Docs
@@ -23,6 +23,7 @@ Core rule: read sources, summarize learning value and proposed page changes to t
 
 ## Directory Layout
 
+- `raw/paper/`: paper PDFs and other paper-like source documents.
 - `wiki/index.md`: table of contents for all wiki pages.
 - `wiki/log.md`: append-only ingest and maintenance log.
 - `wiki/papers/`: papers, long-form articles, course notes, and source summaries.
@@ -56,7 +57,7 @@ If a source introduces a reusable thing:
 When the user asks to ingest new files:
 
 1. Inspect repository status and raw inventory.
-2. Select new or changed ingestable files under `raw/`.
+2. Select new or changed ingestable files under `raw/`, with paper PDFs expected under `raw/paper/`.
 3. Group sources by topic or learning unit when multiple files cover the same idea.
 4. For PDFs, extract enough text to judge structure, citation quality, and OCR/page extraction reliability.
 
@@ -115,9 +116,9 @@ Every maintained page should include:
 ```markdown
 # Page Title
 
-**Summary**: One to two sentences. (source: raw/source-file.pdf)
+**Summary**: One to two sentences. (source: raw/paper/source-file.pdf)
 
-**Sources**: `raw/source-a.md`; `raw/path/source-b.md`
+**Sources**: `raw/paper/source-a.pdf`; `raw/path/source-b.md`
 
 **Last updated**: YYYY-MM-DD
 
@@ -142,7 +143,7 @@ For concept pages, use concept-oriented headings when useful:
 - Cite every factual paragraph with `(source: ...)`.
 - Cite key numbers, paper results, definitions, comparisons, and limitations explicitly.
 - Use source paths when basenames would be ambiguous.
-- If PDF page numbers are available, include them when useful, such as `(source: raw/paper.pdf, p. 4)`.
+- If PDF page numbers are available, include them when useful, such as `(source: raw/paper/source-file.pdf, p. 4)`.
 - If a claim is useful but not sourced, mark it as needing verification.
 - When newer sources supersede older ones, cite the newer source in the updated claim.
 - Tables, matrices, and diagrams need explicit block-level source notes; surrounding prose alone is not enough.

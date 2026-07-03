@@ -11,7 +11,8 @@ The human curates sources, asks questions, and guides interpretation. Agents mai
 ## Folder structure
 
 ```
-raw/                  -- source documents; treat existing files as immutable during ingest
+raw/                  -- source document root; treat existing files as immutable during ingest
+raw/paper/            -- paper PDFs and other paper-like source documents
 raw/code-repos/       -- generated raw source docs derived from external repo code snapshots, versioned by commit
 wiki/                 -- markdown pages maintained by Codex/Claude
 wiki/index.md         -- table of contents for the entire wiki

@@ -25,7 +25,7 @@ Core rule: after each layer, run the sufficiency gate. If the gate passes, stop 
 Use this ladder in order, stopping at the first sufficient layer:
 
 1. **Wiki layer**: search maintained pages under `wiki/`.
-2. **Raw layer**: inspect the cited or relevant source files under `raw/`.
+2. **Raw layer**: inspect the cited or relevant source files under `raw/`, including paper PDFs under `raw/paper/`.
 3. **Code-derived raw layer**: inspect `raw/code-repos/<repo>/latest.yml` and the referenced snapshot docs.
 4. **Local code layer**: inspect `external-repos/<repo>/` with CodeGraph, Serena, and focused reads.
 
@@ -71,7 +71,7 @@ Continue to the next layer when any are true:
 ## Evidence Standards
 
 - Wiki evidence: cite page paths such as `wiki/concepts/attention.md`.
-- Raw evidence: cite source paths such as `raw/paper.pdf` or `raw/source.md`; include page numbers when already available.
+- Raw evidence: cite source paths such as `raw/paper/source.pdf` or `raw/source.md`; include page numbers when already available.
 - Code-derived raw evidence: cite repo name, snapshot commit from `latest.yml`, and document path.
 - Local code evidence: cite repository name, commit if available, file path, and symbol or function when relevant.
 - If support is partial, say what is supported and what remains uncertain.
