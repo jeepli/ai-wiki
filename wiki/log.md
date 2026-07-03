@@ -15,3 +15,6 @@ This is an append-only record of wiki operations.
 - Created `wiki/systems/flashinfer.md`, `wiki/systems/vllm.md`, `wiki/systems/sglang.md`, and `wiki/concepts/kv-cache.md`.
 - Updated `wiki/index.md`.
 - Moved paper PDFs to `raw/paper/` and updated wiki citations plus agent workflow docs to use the new paper-source path.
+- Ingested `raw/paper/flashattention-2.pdf`, `raw/paper/flashattention-3.pdf`, `raw/paper/flashattention-4.pdf`, and `raw/paper/pagedattention.pdf`.
+- Created `wiki/papers/flashattention-2.md`, `wiki/papers/flashattention-3.md`, `wiki/papers/flashattention-4.md`, `wiki/papers/pagedattention.md`, and `wiki/systems/pagedattention.md`.
+- Updated `wiki/systems/flashattention.md`, `wiki/concepts/kv-cache.md`, `wiki/systems/vllm.md`, and `wiki/index.md`.

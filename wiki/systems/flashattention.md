@@ -1,8 +1,8 @@
 # FlashAttention
 
-**Summary**: FlashAttention is an IO-aware exact attention implementation pattern and kernel package that reduces HBM traffic for dense attention while exposing PyTorch-facing APIs, CUDA/C++ bindings, Hopper kernels, and KV-cache decode paths. (source: raw/paper/flashattention.pdf, pp. 1, 4-5; raw/code-repos/flashattention/snapshots/73c992c/overview.md)
+**Summary**: FlashAttention is an IO-aware exact attention implementation pattern and kernel package that reduces HBM traffic for dense attention, then evolves through GPU work partitioning, asynchronous Hopper pipelines, and Blackwell-specific kernel co-design. (source: raw/paper/flashattention.pdf, pp. 1, 4-5; raw/paper/flashattention-2.pdf, pp. 1, 5-8; raw/paper/flashattention-3.pdf, pp. 1-2; raw/paper/flashattention-4.pdf, pp. 1-2)
 
-**Sources**: `raw/paper/flashattention.pdf`; `raw/paper/attention-is-all-you-need.pdf`; `raw/code-repos/flashattention/latest.yml`; `raw/code-repos/flashattention/snapshots/73c992c/overview.md`; `raw/code-repos/flashattention/snapshots/73c992c/architecture.md`; `raw/code-repos/flashattention/snapshots/73c992c/key-flows.md`; `raw/code-repos/flashattention/snapshots/73c992c/api-surface.md`; `raw/code-repos/flashattention/snapshots/73c992c/build-and-entrypoints.md`
+**Sources**: `raw/paper/flashattention.pdf`; `raw/paper/flashattention-2.pdf`; `raw/paper/flashattention-3.pdf`; `raw/paper/flashattention-4.pdf`; `raw/paper/attention-is-all-you-need.pdf`; `raw/code-repos/flashattention/latest.yml`; `raw/code-repos/flashattention/snapshots/73c992c/overview.md`; `raw/code-repos/flashattention/snapshots/73c992c/architecture.md`; `raw/code-repos/flashattention/snapshots/73c992c/key-flows.md`; `raw/code-repos/flashattention/snapshots/73c992c/api-surface.md`; `raw/code-repos/flashattention/snapshots/73c992c/build-and-entrypoints.md`
 
 **Last updated**: 2026-07-03
 
@@ -22,6 +22,8 @@ For backward pass, the stable pattern is to save compact statistics and recomput
 
 Kernel fusion matters because it keeps intermediate operations such as masking, softmax, dropout, and matrix multiplication close to the data rather than repeatedly round-tripping through HBM. (source: raw/paper/flashattention.pdf, p. 5)
 
+The later FlashAttention papers shift the bottleneck being optimized: FlashAttention-2 improves work partitioning and sequence-dimension parallelism on A100, FlashAttention-3 uses Hopper asynchrony and FP8 support, and FlashAttention-4 targets Blackwell's asymmetric scaling where shared memory and exponential throughput become dominant constraints. (source: raw/paper/flashattention-2.pdf, pp. 1, 5-8; raw/paper/flashattention-3.pdf, pp. 1-2, 4-7; raw/paper/flashattention-4.pdf, pp. 1-2, 10-12)
+
 ## Implementation shape
 
 The current code-derived source snapshot presents FlashAttention as a thin Python API over compiled attention kernels: `flash_attn/__init__.py` re-exports dense, packed, varlen, and KV-cache functions, while `flash_attn/flash_attn_interface.py` owns the PyTorch custom-op and autograd-facing wrappers. (source: raw/code-repos/flashattention/snapshots/73c992c/overview.md; raw/code-repos/flashattention/snapshots/73c992c/architecture.md)
@@ -34,9 +36,9 @@ The package build is controlled by `setup.py` and build-time environment variabl
 
 ## Results and limitations
 
-As a reusable systems concept, FlashAttention preserves exact dense attention while improving memory behavior; paper-specific benchmark numbers live in [[papers/flashattention]]. (source: raw/paper/flashattention.pdf, pp. 5-10)
+As a reusable systems concept, FlashAttention preserves exact dense attention while improving memory behavior and hardware utilization; paper-specific benchmark numbers live in [[papers/flashattention]], [[papers/flashattention-2]], [[papers/flashattention-3]], and [[papers/flashattention-4]]. (source: raw/paper/flashattention.pdf, pp. 5-10; raw/paper/flashattention-2.pdf, pp. 10-11; raw/paper/flashattention-3.pdf, pp. 11-12; raw/paper/flashattention-4.pdf, pp. 1-2)
 
-The system approach is constrained by implementation complexity: new variants or hardware targets may require low-level kernels, compiler support, or generated kernel specialization. (source: raw/paper/flashattention.pdf, p. 10; raw/code-repos/flashattention/snapshots/73c992c/architecture.md)
+The system approach is constrained by implementation complexity: new variants or hardware targets may require low-level kernels, compiler support, generated kernel specialization, or hardware-specific schedules. (source: raw/paper/flashattention.pdf, p. 10; raw/paper/flashattention-3.pdf, pp. 2, 12; raw/paper/flashattention-4.pdf, pp. 1-2, 16; raw/code-repos/flashattention/snapshots/73c992c/architecture.md)
 
 ## Common pitfalls
 
@@ -52,6 +54,9 @@ The current wiki source records architecture and key flows for commit `73c992c`,
 ## Related pages
 
 - [[papers/flashattention]]
+- [[papers/flashattention-2]]
+- [[papers/flashattention-3]]
+- [[papers/flashattention-4]]
 - [[concepts/attention]]
 - [[concepts/kv-cache]]
 - [[models/transformer]]
