@@ -1,0 +1,11 @@
+repo: sglang
+commit: b276a9acee8a02159a9a8d839da8a7b4dd898b58
+commit_short: b276a9a
+snapshot: snapshots/b276a9a
+published_at: 2026-07-03T01:46:04Z
+documents:
+  - snapshots/b276a9a/overview.md
+  - snapshots/b276a9a/architecture.md
+  - snapshots/b276a9a/key-flows.md
+  - snapshots/b276a9a/api-surface.md
+  - snapshots/b276a9a/build-and-entrypoints.md

@@ -1,0 +1,16 @@
+repo: vllm
+upstream: https://github.com/vllm-project/vllm
+domain: inference-engine
+role: LLM serving engine, scheduler, paged attention, KV cache, and batching
+source_path: external-repos/vllm
+commit: 8357226f4f1b92aa2139ebc482ca71012f02016b
+commit_short: 8357226
+generated_at: 2026-07-02T11:19:30Z
+generator: generate-repo-raw-docs
+status: published
+documents:
+  - overview.md
+  - architecture.md
+  - key-flows.md
+  - api-surface.md
+  - build-and-entrypoints.md

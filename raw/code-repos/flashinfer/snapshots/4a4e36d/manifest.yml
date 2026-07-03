@@ -1,0 +1,16 @@
+repo: flashinfer
+upstream: https://github.com/flashinfer-ai/flashinfer
+domain: inference-kernel
+role: LLM serving kernels, attention kernels, and paged KV cache primitives
+source_path: external-repos/flashinfer
+commit: 4a4e36d7fdaccd5eac8445a0bb4840e9d742c8b5
+commit_short: 4a4e36d
+generated_at: 2026-07-02T11:19:29Z
+generator: generate-repo-raw-docs
+status: published
+documents:
+  - overview.md
+  - architecture.md
+  - key-flows.md
+  - api-surface.md
+  - build-and-entrypoints.md

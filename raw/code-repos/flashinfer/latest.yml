@@ -1,0 +1,11 @@
+repo: flashinfer
+commit: 4a4e36d7fdaccd5eac8445a0bb4840e9d742c8b5
+commit_short: 4a4e36d
+snapshot: snapshots/4a4e36d
+published_at: 2026-07-03T01:46:03Z
+documents:
+  - snapshots/4a4e36d/overview.md
+  - snapshots/4a4e36d/architecture.md
+  - snapshots/4a4e36d/key-flows.md
+  - snapshots/4a4e36d/api-surface.md
+  - snapshots/4a4e36d/build-and-entrypoints.md

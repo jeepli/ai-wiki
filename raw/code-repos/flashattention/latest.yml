@@ -1,0 +1,11 @@
+repo: flashattention
+commit: 73c992c8ca746935548df620ef3c1b6238fe6e68
+commit_short: 73c992c
+snapshot: snapshots/73c992c
+published_at: 2026-07-03T01:46:03Z
+documents:
+  - snapshots/73c992c/overview.md
+  - snapshots/73c992c/architecture.md
+  - snapshots/73c992c/key-flows.md
+  - snapshots/73c992c/api-surface.md
+  - snapshots/73c992c/build-and-entrypoints.md

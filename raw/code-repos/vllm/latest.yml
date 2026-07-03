@@ -1,0 +1,11 @@
+repo: vllm
+commit: 8357226f4f1b92aa2139ebc482ca71012f02016b
+commit_short: 8357226
+snapshot: snapshots/8357226
+published_at: 2026-07-03T01:46:03Z
+documents:
+  - snapshots/8357226/overview.md
+  - snapshots/8357226/architecture.md
+  - snapshots/8357226/key-flows.md
+  - snapshots/8357226/api-surface.md
+  - snapshots/8357226/build-and-entrypoints.md

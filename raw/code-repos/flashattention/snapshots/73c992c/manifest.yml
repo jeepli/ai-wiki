@@ -1,0 +1,16 @@
+repo: flashattention
+upstream: https://github.com/Dao-AILab/flash-attention
+domain: attention-kernel
+role: IO-aware exact attention kernels and CUDA/Triton implementations
+source_path: external-repos/flashattention
+commit: 73c992c8ca746935548df620ef3c1b6238fe6e68
+commit_short: 73c992c
+generated_at: 2026-07-02T11:19:29Z
+generator: generate-repo-raw-docs
+status: published
+documents:
+  - overview.md
+  - architecture.md
+  - key-flows.md
+  - api-surface.md
+  - build-and-entrypoints.md

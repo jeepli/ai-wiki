@@ -1,0 +1,16 @@
+repo: sglang
+upstream: https://github.com/sgl-project/sglang
+domain: inference-engine
+role: LLM serving engine, structured generation runtime, scheduler, and inference APIs
+source_path: external-repos/sglang
+commit: b276a9acee8a02159a9a8d839da8a7b4dd898b58
+commit_short: b276a9a
+generated_at: 2026-07-02T11:19:30Z
+generator: generate-repo-raw-docs
+status: published
+documents:
+  - overview.md
+  - architecture.md
+  - key-flows.md
+  - api-surface.md
+  - build-and-entrypoints.md
